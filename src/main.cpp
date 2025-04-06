@@ -7,6 +7,12 @@
 
 using namespace std;
 
+struct Bid
+{
+    int count;
+    int value;
+};
+
 int main()
 {
     srand(static_cast<unsigned int>(time(0)));
@@ -24,7 +30,8 @@ int main()
 
     bool gameOver = false;
     int currentPlayer = 1;
-    int bid = 0;
+    Bid currentBid = {0, 0};
+    bool firstRound = true;
 
     while (!gameOver)
     {
@@ -52,31 +59,69 @@ int main()
             cout << player2->getDice(i) << " ";
         cout << endl;
 
-        bid = 0;
         bool bluffCalled = false;
         currentPlayer = 1;
 
         while (!bluffCalled)
         {
-            cout << "\n--- Player " << currentPlayer << "'s Turn ---" << endl;
-            cout << "Current bid: " << (bid == 0 ? "None" : to_string(bid)) << endl;
-            cout << "1 - Raise bid\n2 - Call bluff\nChoice: ";
             int choice;
-            cin >> choice;
+            cout << "\n--- Player " << currentPlayer << "'s Turn ---" << endl;
+            cout << "Current bid: " << (currentBid.count == 0 ? "None" : to_string(currentBid.count) + " " + to_string(currentBid.value) + "s") << endl;
+            if (!firstRound)
+            {
+                cout << "1 - Raise bid\n2 - Call bluff\nChoice: ";
+                cin >> choice;
+            }
+            else
+                choice = 1;
 
             if (choice == 1)
             {
-                int newBid;
-                cout << "Enter new bid (must be higher than " << bid << "): ";
-                cin >> newBid;
-
-                if (newBid <= bid)
+                int newCount, newValue;
+                if (firstRound)
                 {
-                    cout << "Invalid bid. Must be higher than current." << endl;
-                    continue;
+                    cout << "Enter the dice value you wish to bid on (1-6): ";
+                    cin >> newValue;
+
+                    while (newValue < 1 || newValue > 6)
+                    {
+                        cout << "Invalid value. Enter a number between 1 and 6: ";
+                        cin >> newValue;
+                    }
+
+                    cout << "Enter the number of dice you wish to bid on: ";
+                    cin >> newCount;
+
+                    while (newCount < 1 || newCount > 30)
+                    {
+                        cout << "Invalid count. Enter a number between 1 and 30: ";
+                        cin >> newCount;
+                    }
+
+                    while (newCount <= currentBid.count)
+                    {
+                        cout << "You must raise the bid. Enter a higher count: ";
+                        cin >> newCount;
+                    }
+
+                    currentBid.count = newCount;
+                    currentBid.value = newValue;
+                    firstRound = false;
+                }
+                else
+                {
+                    cout << "Enter the new count of dice you wish to bid on: ";
+                    cin >> newCount;
+
+                    while (newCount < 1 || newCount > 30)
+                    {
+                        cout << "Invalid count. Enter a number between 1 and 30: ";
+                        cin >> newCount;
+                    }
+
+                    currentBid.count = newCount;
                 }
 
-                bid = newBid;
                 currentPlayer = (currentPlayer == 1) ? 2 : 1;
             }
             else if (choice == 2)
@@ -91,17 +136,21 @@ int main()
 
         cout << "\nBluff called! Revealing dice..." << endl;
 
-        int total = 0;
-        for (int i = 0; i < player1->getNumDice(); ++i)
-            total += player1->getDice(i);
-        for (int i = 0; i < player2->getNumDice(); ++i)
-            total += player2->getDice(i);
+        int totalDiceCount = 0;
 
-        cout << "Total of all dice: " << total << endl;
+        for (int i = 0; i < player1->getNumDice(); ++i)
+            if (player1->getDice(i) == currentBid.value)
+                totalDiceCount++;
+
+        for (int i = 0; i < player2->getNumDice(); ++i)
+            if (player2->getDice(i) == currentBid.value)
+                totalDiceCount++;
+
+        cout << "Total dice showing " << currentBid.value << ": " << totalDiceCount << endl;
 
         int bidder = (currentPlayer == 1) ? 2 : 1;
 
-        if (total >= bid)
+        if (totalDiceCount >= currentBid.count)
         {
             cout << "The bid was correct! Player " << currentPlayer << " loses a die." << endl;
             if (currentPlayer == 1)
