@@ -1,0 +1,176 @@
+# ---- General C/C++ Files ----
+*.d             # Dependency files
+*.o             # Object files
+*.ko            # Kernel object files
+*.obj           # Compiled object files
+*.elf           # Executable and Linkable Format
+
+# ---- Linker Output ----
+*.ilk
+*.map
+*.exp
+
+# ---- Precompiled Headers ----
+*.gch
+*.pch
+
+# ---- Libraries ----
+*.lib
+*.a
+*.la
+*.lo
+
+# ---- Shared Objects (DLLs, SOs) ----
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# ---- Executables ----
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# ---- Debug Files ----
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# ---- CMake Files ----
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+CMakeUserPresets.json
+
+# ---- Build Directories ----
+/build/
+bin/
+obj/
+lib/
+logs/
+
+# ---- Visual Studio Files ----
+.vs/
+*.sln
+*.suo
+*.user
+*.userosscache
+*.VC.db
+*.VC.opendb
+*.aps
+*.ncb
+*.cachefile
+*.ipch/
+*.tlog
+
+# ---- SDL/GLFW/GLEW Build Artifacts ----
+vendor/SDL2/build/
+vendor/GLFW/build/
+vendor/GLEW/build/
+vendor/GLM/build/
+
+# ---- Editor Files (VS Code, JetBrains, etc.) ----
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# ---- JetBrains IDEs (IntelliJ, RubyMine, PhpStorm, etc.) ----
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# ---- AWS User-specific ----
+.idea/**/aws.xml
+
+# ---- Generated Files ----
+.idea/**/contentModel.xml
+
+# ---- Sensitive or High-Churn Files ----
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# ---- Gradle Files ----
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# ---- Gradle and Maven Auto-Import Files ----
+# .idea/artifacts
+# .idea/compiler.xml
+# .idea/jarRepositories.xml
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules
+# *.iml
+# *.ipr
+
+# ---- CMake ----
+cmake-build-*/
+
+# ---- Mongo Explorer Plugin ----
+.idea/**/mongoSettings.xml
+
+# ---- File-Based Project Format ----
+*.iws
+
+# ---- IntelliJ ----
+out/
+
+# ---- mpeltonen/sbt-idea Plugin ----
+.idea_modules/
+
+# ---- JIRA Plugin ----
+atlassian-ide-plugin.xml
+
+# ---- Cursive Clojure Plugin ----
+.idea/replstate.xml
+
+# ---- SonarLint Plugin ----
+.idea/sonarlint/
+
+# ---- Crashlytics Plugin (For Android Studio and IntelliJ) ----
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# ---- Editor-based Rest Client ----
+.idea/httpRequests
+
+# ---- Android Studio Serialized Cache File ----
+.idea/caches/build_file_checksums.ser
+
+# ---- Python Files (If Used for Tools/Scripting) ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ---- Miscellaneous ----
+*.log
+*.tmp
+*.bak
+*~
+~$*
